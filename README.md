@@ -1,5 +1,5 @@
 # Windowed Hilbert Transform (WHT)
-## Spline-Kernelled Chirplet Transform
+## Typical Signal
 ```matlab
 clear,clc
 load SignalsTypes
@@ -29,7 +29,7 @@ H = s(h); % Henkel Matrix of the signal
 figure;
 imagesc(H)
 ```
-![Spline-Kernelled Chirplet Transform](img/SCT.png)
+![Henkel Mtrix Constraction](img/ws.png)
 
 ## Windowed Hilbert Transform (WHT)
 ```matlab
@@ -42,8 +42,6 @@ WHT = ifft(FWHT); % WHT
 imagesc(abs(FWHT))
 imagesc(real(WHT))
 ```
-![Spline-Kernelled Chirplet Transform](img/SCT.png)
-
 
 ## Derivative of WHT and Chirp-rate
 ### First-order 
@@ -53,7 +51,6 @@ DHT = ifft(sparse(diag(sqrt(-1)*2*pi*df*[0:fix(L/2)-1,0,-fix(L/2)+1:-1])) * FWHT
 IF = (real(WHT).*imag(DHT)-real(DHT).*imag(WHT)) ./ (conj(WHT).*WHT + eps); % IF
 CR = diff(IF);CR(L,:) = 0; % CR
 ```
-![Spline-Kernelled Chirplet Transform](img/SCT.png)
 
 ### Envelope of the Chirp Rate 
 
@@ -71,6 +68,8 @@ plot(IF)
 plot(CR)
 plot(ACR)
 ```
+![Envelope of the Chirp Rate](img/CR.png)
+
 ## STFT Via Chirp Rate
 
 ```matlab
@@ -84,6 +83,9 @@ imagesc(t,f,fftshift(TFR,1))
 xlabel Time(s)
 ylabel Frequency(Hz)
 ```
+
+![STFT Via Chirp Rate](img/CHT.png)
+
 
 ## STFT Via Original Chirp Rate
 
@@ -99,7 +101,7 @@ imagesc(t,f,fftshift(TFR0,1))
 xlabel Time(s)
 ylabel Frequency(Hz)
 ```
-
+![STFT Via Original Chirp Rate](img/OCHT.png)
 
 ### Some useful functions
 ```matlab
