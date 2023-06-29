@@ -57,7 +57,7 @@ CR = diff(IF);CR(L,:) = 0; % CR
 ```matlab
 FCR = fft(sparse(diag(w)) * CR);
 acr = abs(ifft(sparse(diag(q)) * FCR))/max(w);
-Smoothing
+% Smoothing
 w = gausswin(L,6); % selected parameter
 w = w/sum(w);
 IF = (w' * IF)/2/pi;
